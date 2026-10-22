@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101410">
+<title>Project P.I.T.T. — Web</title>
+<link rel="icon" href="game.icon.png">
+<link rel="stylesheet" href="launcher.css">
+<body>
+<header><a href="./">PROJECT P.I.T.T.<span>WEB EDITION</span></a><div id="connection">Локальная игра · без аккаунта</div></header>
+<main>
+  <section id="launcher">
+    <img src="game.png" alt="Project P.I.T.T." class="cover">
+    <div class="intro"><p class="eyebrow">БРАУЗЕРНАЯ ВЕРСИЯ / 1.0.5</p><h1>Добро пожаловать<br>в P.I.T.T.</h1><p>Та же фабрика. Прямо в браузере.</p><p class="muted">При первом запуске загрузятся игровые данные. Затем игра работает на вашем устройстве, а прогресс сохраняется в этом браузере.</p>
+    <button id="play" class="primary">Загрузить и играть <span>↗</span></button>
+    <progress id="progress" max="100" value="0" hidden aria-label="Загрузка игры"></progress><p id="status" role="status" aria-live="polite">WebGL 2 · клавиатура и мышь · около 140 МБ</p>
+    <p id="storage" class="muted"></p></div>
+  </section>
+  <section id="stage" hidden><canvas id="canvas" tabindex="0" aria-label="Project P.I.T.T.">Браузер должен поддерживать WebGL 2.</canvas></section>
+  <nav aria-label="Действия с игрой"><button id="save" disabled>Сохранить</button><button id="backup" disabled>Скачать сохранения</button><button id="restore" disabled>Загрузить сохранения</button><button id="fullscreen" disabled>На весь экран ⛶</button><span id="save-status" role="status">Сохранения — на этом устройстве</span></nav>
+  <input type="file" id="backup-file" accept="application/json,.json" hidden>
+  <details><summary>Управление и сохранения</summary><p>WASD — движение · мышь — обзор · F — взаимодействие · Esc — меню / освободить курсор. Остальные действия и настройки доступны в игре.</p><p>Используйте «Сохранить» или сохранение в меню перед закрытием вкладки. Автосохранение выполняется раз в минуту во время игры. «Скачать сохранения» создаёт переносную резервную копию всех слотов и настроек. Восстанавливайте её из главного меню, затем обновите страницу.</p><p>Прогресс привязан к браузеру и адресу сайта. Очистка данных сайта или приватный режим могут удалить его. Резервную копию можно перенести на другой компьютер. Steam Overlay, Steam Cloud и достижения Steam в веб-версии недоступны.</p><p id="offline-status">Офлайн-кэш будет подготовлен при загрузке игры.</p></details>
+  <details id="diagnostics" hidden><summary>Диагностика</summary><pre id="log"></pre></details>
+</main>
+<footer>PROJECT P.I.T.T. <span>Godot 4.7.1 / WebAssembly / WebGL 2</span></footer>
+<script src="game.js"></script><script src="launcher.js"></script>
+</body></html>

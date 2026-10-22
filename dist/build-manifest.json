@@ -1,0 +1,62 @@
+{
+  ".nojekyll": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "game.apple-touch-icon.png": {
+    "bytes": 48898,
+    "sha256": "46d0a5123bb2a0abc5f23c14bea50e9afd6683b0a6e7b5dbd39b4a7d5634c3fa"
+  },
+  "game.audio.position.worklet.js": {
+    "bytes": 2973,
+    "sha256": "be33985bc7160d6bf9646f259cd86b259cd67b02ccb297ee5c44f8ac84327bc8"
+  },
+  "game.audio.worklet.js": {
+    "bytes": 7298,
+    "sha256": "5b476a9c9ce642c0ee4256436d1bc31d9c38f868aca0f9a8e2a57c18d2dec2a3"
+  },
+  "game.html": {
+    "bytes": 5442,
+    "sha256": "d11ec04aa41d7f247f4cae2343f19ba330201c57b8e58d84b0061e3721fb4376"
+  },
+  "game.icon.png": {
+    "bytes": 319014,
+    "sha256": "94057394028ad4df5e8048a415799dba7421db667dd71db10b3ffb6e16035e54"
+  },
+  "game.js": {
+    "bytes": 282046,
+    "sha256": "7f872238148006f9e801a5d6c0a35110a73b63a59a827248061525cc08c8b8d3"
+  },
+  "game.pck": {
+    "bytes": 97773524,
+    "sha256": "ce5f4818d33b76ada6c2c1826aad78deb756a9cdaa458522d4aa1cffe047a8b7"
+  },
+  "game.png": {
+    "bytes": 1551659,
+    "sha256": "190b93c0ce84fe43f606fe22be358b4f274cc12246fb508cfc098634c89863c2"
+  },
+  "game.wasm": {
+    "bytes": 39513091,
+    "sha256": "35116f68540ac41acf7d71ea457added91b5e960a9cca3e2acc72918eaf01277"
+  },
+  "GODOT-LICENSE.txt": {
+    "bytes": 1221,
+    "sha256": "9d11ba5edb3e0c5de2d597bf10a30573450c9a546d9a651cc2b55b8dd2e0fd6a"
+  },
+  "index.html": {
+    "bytes": 3700,
+    "sha256": "3f3310b2e694be911680836f7e5e364131f8d0c6310e3ec485dd713ff62b3bae"
+  },
+  "launcher.css": {
+    "bytes": 2821,
+    "sha256": "1d98f5a68f57c41bd24dfe856eaf2cd3ef6e803c6f940a6a0d142547b9443975"
+  },
+  "launcher.js": {
+    "bytes": 7453,
+    "sha256": "127c2e65e91d83ac7818469cb5d45df0990146041c659ea8c3b9530be5cc581c"
+  },
+  "sw.js": {
+    "bytes": 1943,
+    "sha256": "2706cdd62af64483e4cceef73a7da3af89c67f536717c2c2e075253ce3d821ca"
+  }
+}
