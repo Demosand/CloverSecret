@@ -1,0 +1,2 @@
+# Exported artifacts must retain their exact bytes and SHA-256 hashes.
+dist/** -text
