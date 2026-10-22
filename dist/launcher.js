@@ -22,7 +22,19 @@ function fail(error) {
 async function setupCache() {
   if(!('serviceWorker' in navigator)) return;
   try {
-    await navigator.serviceWorker.register('./sw.js');
+    const registration = await navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'});
+    await registration.update();
+    const updating = registration.installing || registration.waiting;
+    if(updating && updating.state !== 'activated') {
+      await new Promise((resolve,reject)=>{
+        const timer=setTimeout(()=>reject(new Error('Обновление игры не завершено. Обновите страницу.')),15000);
+        const check=()=>{
+          if(updating.state==='activated'){clearTimeout(timer);resolve();}
+          else if(updating.state==='redundant'){clearTimeout(timer);reject(new Error('Повторите обновление страницы для загрузки новой версии.'));}
+        };
+        updating.addEventListener('statechange',check);check();
+      });
+    }
     await navigator.serviceWorker.ready;
     if(!navigator.serviceWorker.controller) {
       await Promise.race([new Promise(resolve => navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true})),new Promise(resolve => setTimeout(resolve,3000))]);
@@ -59,7 +71,7 @@ $('play').onclick = async () => {
     try {persistent=await navigator.storage?.persist?.();} catch(_) {}
     $('storage').textContent = persistent ? 'Постоянное хранилище разрешено.' : 'Делайте резервные копии: браузер может очищать хранилище.';
     status('Подготовка загрузки…');await cachePromise;
-    engine=new Engine({executable:'game',mainPack:'game.pck',canvas:$('canvas'),canvasResizePolicy:2,focusCanvas:true,persistentPaths:['/userfs'],fileSizes:{'game.pck':97773524,'game.wasm':39513091},onPrint:console.log,onPrintError:message=>{console.error(message);diagnostic(message);},onExit:()=>{saveStatus('Игра закрыта. Для нового запуска обновите страницу.');$('stage').hidden=true;$('launcher').hidden=false;for(const id of ['save','backup','restore','fullscreen'])$(id).disabled=true;$('play').disabled=false;$('play').textContent='Запустить снова';$('play').onclick=()=>location.reload();}});
+    engine=new Engine({executable:'game',mainPack:'game.pck',canvas:$('canvas'),canvasResizePolicy:2,focusCanvas:true,persistentPaths:['/userfs'],fileSizes:{'game.pck':97774340,'game.wasm':39513091},onPrint:console.log,onPrintError:message=>{console.error(message);diagnostic(message);},onExit:()=>{saveStatus('Игра закрыта. Для нового запуска обновите страницу.');$('stage').hidden=true;$('launcher').hidden=false;for(const id of ['save','backup','restore','fullscreen'])$(id).disabled=true;$('play').disabled=false;$('play').textContent='Запустить снова';$('play').onclick=()=>location.reload();}});
     await engine.startGame({onProgress:(current,total)=>{if(total>0){$('progress').value=current/total*100;status(`Загрузка ${Math.round(current/total*100)}% · ${(current/1e6).toFixed(1)} / ${(total/1e6).toFixed(1)} МБ`);}else status('Подготовка игровых данных…');}});
     started=true;$('launcher').hidden=true;$('stage').hidden=false;$('canvas').focus({preventScroll:true});
     if(workerReady) navigator.serviceWorker.controller.postMessage({type:'CACHE_SHELL'});
@@ -70,7 +82,6 @@ $('save').onclick=()=>{saveStatus('Сохранение…');window.pittCommand?
 $('backup').onclick=()=>window.pittCommand?.('backup');
 $('fullscreen').onclick=async()=>{try{await $('canvas').requestFullscreen();$('canvas').focus();}catch(error){saveStatus(error.message);}};
 $('restore').onclick=()=>$('backup-file').click();
-$('canvas').addEventListener('mousedown',()=>{if(window.pittWantsMouse&&!document.pointerLockElement)window.pittCommand?.('capture');});
 $('backup-file').onchange=async event=>{
   try{
     const file=event.target.files[0];if(!file)return;

@@ -16,12 +16,12 @@
     <progress id="progress" max="100" value="0" hidden aria-label="Загрузка игры"></progress><p id="status" role="status" aria-live="polite">WebGL 2 · клавиатура и мышь · около 140 МБ</p>
     <p id="storage" class="muted"></p></div>
   </section>
-  <section id="stage" hidden><canvas id="canvas" tabindex="0" aria-label="Project P.I.T.T.">Браузер должен поддерживать WebGL 2.</canvas></section>
+  <section id="stage" hidden><canvas id="canvas" tabindex="0" aria-label="Project P.I.T.T.">Браузер должен поддерживать WebGL 2.</canvas><p id="mouse-hint" role="status" hidden>Нажмите на игру, чтобы вернуть управление мышью</p></section>
   <nav aria-label="Действия с игрой"><button id="save" disabled>Сохранить</button><button id="backup" disabled>Скачать сохранения</button><button id="restore" disabled>Загрузить сохранения</button><button id="fullscreen" disabled>На весь экран ⛶</button><span id="save-status" role="status">Сохранения — на этом устройстве</span></nav>
   <input type="file" id="backup-file" accept="application/json,.json" hidden>
   <details><summary>Управление и сохранения</summary><p>WASD — движение · мышь — обзор · F — взаимодействие · Esc — меню / освободить курсор. Остальные действия и настройки доступны в игре.</p><p>Используйте «Сохранить» или сохранение в меню перед закрытием вкладки. Автосохранение выполняется раз в минуту во время игры. «Скачать сохранения» создаёт переносную резервную копию всех слотов и настроек. Восстанавливайте её из главного меню, затем обновите страницу.</p><p>Прогресс привязан к браузеру и адресу сайта. Очистка данных сайта или приватный режим могут удалить его. Резервную копию можно перенести на другой компьютер. Steam Overlay, Steam Cloud и достижения Steam в веб-версии недоступны.</p><p id="offline-status">Офлайн-кэш будет подготовлен при загрузке игры.</p></details>
   <details id="diagnostics" hidden><summary>Диагностика</summary><pre id="log"></pre></details>
 </main>
 <footer>PROJECT P.I.T.T. <span>Godot 4.7.1 / WebAssembly / WebGL 2</span></footer>
-<script src="game.js"></script><script src="launcher.js"></script>
+<script src="game.js"></script><script src="launcher.js"></script><script src="mouse-capture.js"></script>
 </body></html>

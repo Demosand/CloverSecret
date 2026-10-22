@@ -1,6 +1,6 @@
 'use strict';
-const CACHE='project-pitt-0bd45b71fe50';
-const SHELL=['./','./index.html','./launcher.css','./launcher.js','./game.js','./game.wasm','./game.pck','./game.png','./game.icon.png','./game.audio.worklet.js','./game.audio.position.worklet.js'];
+const CACHE='project-pitt-9b0d9c3779bd';
+const SHELL=['./','./index.html','./launcher.css','./launcher.js','./mouse-capture.js','./game.js','./game.wasm','./game.pck','./game.png','./game.icon.png','./game.audio.worklet.js','./game.audio.position.worklet.js'];
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
 async function tell(data){for(const client of await self.clients.matchAll())client.postMessage(data);}
@@ -10,7 +10,7 @@ self.addEventListener('fetch',event=>{
   event.respondWith((async()=>{
     const cache=await caches.open(CACHE);
     // Refresh the launcher online; immutable game data uses the device cache.
-    const shell=event.request.mode==='navigate'||/\/(index\.html|launcher\.(js|css)|sw\.js)$/.test(url.pathname);
+    const shell=event.request.mode==='navigate'||/\/(index\.html|launcher\.(js|css)|mouse-capture\.js|sw\.js)$/.test(url.pathname);
     const cached=await cache.match(event.request);
     if(cached&&!shell)return cached;
     try{
